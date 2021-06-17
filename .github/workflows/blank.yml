@@ -56,4 +56,4 @@ jobs:
 
     - name: Install devextreme package
       run: |        
-        npm install --no-package-lock ../sources2/test/gulp
+        npm install --no-package-lock ../sources2/test/glob
