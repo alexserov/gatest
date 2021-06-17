@@ -21,8 +21,8 @@ jobs:
 
     - name: Build devextreme repo
       run: |
-        cp -r ./node_modules/ ../node_modules/
-        tar -cvf test_node_modules.tar ../node_modules/        
+        cp -r ./node_modules/ ../node_modules/test
+        tar -cvf test_node_modules.tar ../node_modules/test
 
     - name: Copy build artifacts      
       uses: actions/upload-artifact@v2
@@ -50,14 +50,9 @@ jobs:
 
     - name: Unpack sources
       run: |        
-        mkdir ../node_modules/
-        tar -xf ../sources/test_node_modules.tar -C ../node_modules/     
+        mkdir ../sources2/
+        tar -xf ../sources/test_node_modules.tar -C ../sources2/     
 
-    - name: Download sources 2
-      uses: actions/download-artifact@v2
-      with:
-        name: sources
-        path: sources
     - name: Install devextreme package
       run: |        
-        npm install --no-package-lock ../sources/gulp
+        npm install --no-package-lock ../sources2/test/gulp
