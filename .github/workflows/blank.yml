@@ -21,6 +21,7 @@ jobs:
 
     - name: Build devextreme repo
       run: |
+        mkdir ../node_modules/
         cp -r ./node_modules/ ../node_modules/test
         tar -cvf test_node_modules.tar ../node_modules/test
 
