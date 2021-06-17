@@ -47,7 +47,12 @@ jobs:
       with:
         name: sources
         path: ../sources
+
+    - name: Download sources 2
+      uses: actions/download-artifact@v2
+      with:
+        name: sources
+        path: sources
     - name: Install devextreme package
       run: |        
         npm install --no-package-lock ../sources
-    
