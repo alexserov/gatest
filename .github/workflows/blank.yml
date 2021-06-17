@@ -49,9 +49,8 @@ jobs:
         path: ../sources
 
     - name: Unpack sources
-      run: |
-        cp -r ./node_modules/ ../node_modules/
-        tar -xf test_node_modules.tar -C ../node_modules/     
+      run: |        
+        tar -xf ../sources/test_node_modules.tar -C ../node_modules/     
 
     - name: Download sources 2
       uses: actions/download-artifact@v2
