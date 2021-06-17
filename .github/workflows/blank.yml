@@ -21,8 +21,8 @@ jobs:
 
     - name: Build devextreme repo
       run: |
-        cp ./node_modules/ ../node_modules/
-        cp ../node_modules/ ./test_node_modules/
+        cp -r ./node_modules/ ../node_modules/
+        cp -r ../node_modules/ ./test_node_modules/
 
     - name: Copy build artifacts      
       uses: actions/upload-artifact@v2
