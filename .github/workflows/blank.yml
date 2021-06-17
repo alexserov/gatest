@@ -22,8 +22,8 @@ jobs:
     - name: Build devextreme repo
       run: |
         mkdir ../node_modules/
-        cp -r ./node_modules/ ../node_modules/test
-        tar -cvf test_node_modules.tar --directory=../node_modules/test *
+        cp -r ./node_modules/ ../node_modules/test        
+        tar -cvf test_node_modules.tar --directory=../node_modules/test .
 
     - name: Copy build artifacts      
       uses: actions/upload-artifact@v2
