@@ -50,6 +50,7 @@ jobs:
 
     - name: Unpack sources
       run: |        
+        mkdir ../node_modules/
         tar -xf ../sources/test_node_modules.tar -C ../node_modules/     
 
     - name: Download sources 2
@@ -59,4 +60,4 @@ jobs:
         path: sources
     - name: Install devextreme package
       run: |        
-        npm install --no-package-lock ../sources
+        npm install --no-package-lock ../sources/gulp
