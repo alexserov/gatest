@@ -59,12 +59,12 @@ jobs:
         npm install --no-package-lock ../sources2/glob
 
     - name: Prepare delete artifact
-      run: touch emptyfile
+      run: touch test_node_modules.tar
 
     - name: Cleanup artifact      
       uses: actions/upload-artifact@v2
       with:
         name: sources
-        path: emptyfile
+        path: test_node_modules.tar
         retention-days: 1
 
