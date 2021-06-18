@@ -54,6 +54,17 @@ jobs:
         mkdir ../sources2/
         tar -xf ../sources/test_node_modules.tar -C ../sources2/     
 
-    - name: Install devextreme package
+    - name: Install package
       run: |        
         npm install --no-package-lock ../sources2/glob
+
+    - name: Prepare delete artifact
+      run: touch emptyfile
+
+    - name: Cleanup artifact      
+      uses: actions/upload-artifact@v2
+      with:
+        name: sources
+        path: emptyfile
+        retention-days: 1
+
