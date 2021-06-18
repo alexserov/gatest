@@ -33,9 +33,12 @@ jobs:
         retention-days: 7
     
   test:
-    needs: build    
+    needs: build
+    strategy:
+      matrix:
+        envvar: [1,2]    
     runs-on: ubuntu-latest
-    name: test
+    name: test {{matrix.envvar}}
     timeout-minutes: 60
     steps:
     - name: Get sources
@@ -58,6 +61,12 @@ jobs:
       run: |        
         npm install --no-package-lock ../sources2/glob
 
+  cleanup:
+    needs: test
+    runs-on: ubuntu-latest
+    name: Cleanup artifacts
+    timeout-minutes: 10
+    steps:
     - name: Prepare delete artifact
       run: touch test_node_modules.tar
 
@@ -67,4 +76,3 @@ jobs:
         name: sources
         path: test_node_modules.tar
         retention-days: 1
-
