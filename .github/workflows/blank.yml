@@ -36,7 +36,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        envvar: [hello(1/2),world(134/1341)]
+        envvar: [hello(1/2),world(134/1341), yummy]
     runs-on: ubuntu-latest
     name: test {{matrix.envvar}}
     timeout-minutes: 60
@@ -70,7 +70,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: screenshots-${{ steps.screenshotname.outputs.value }}
-        path: ${{ github.workspace }}/testing/artifacts/*
+        path: ${{ github.workspace }}/node_modules/*
         if-no-files-found: ignore
 
   cleanup:
