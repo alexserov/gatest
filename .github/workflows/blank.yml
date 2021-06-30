@@ -36,7 +36,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        envvar: [1,2]    
+        envvar: [hello(1/2),world(134/1341)]
     runs-on: ubuntu-latest
     name: test {{matrix.envvar}}
     timeout-minutes: 60
@@ -60,6 +60,18 @@ jobs:
     - name: Install package
       run: |        
         npm install --no-package-lock ../sources2/glob
+
+        
+    - name: Get screenshots artifacts name
+      id: screenshotname
+      run: echo ::set-output name=value::$(echo "${{ matrix.envvar }}" | grep -oP "^\w+")
+
+    - name: Copy screenshots artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: screenshots-${{ screenshotname.outputs.value }}
+        path: ${{ github.workspace }}/testing/artifacts/*
+        if-no-files-found: ignore
 
   cleanup:
     needs: test
