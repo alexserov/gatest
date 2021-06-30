@@ -69,7 +69,7 @@ jobs:
     - name: Copy screenshots artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: screenshots-${{ screenshotname.outputs.value }}
+        name: screenshots-${{ steps.screenshotname.outputs.value }}
         path: ${{ github.workspace }}/testing/artifacts/*
         if-no-files-found: ignore
 
