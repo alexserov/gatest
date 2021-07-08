@@ -18,5 +18,5 @@ jobs:
     - name: Install packages
       run: |
         echo $(jq -r .version package.json)
-        git status
-        git branch -v
+        git show head^:package.json > old-package.json
+        echo $(jq -r .version old-package.json)
