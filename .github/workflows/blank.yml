@@ -17,4 +17,4 @@ jobs:
     
     - name: Install packages
       run: |
-        echo $(jq .version package.json)
+        echo $(jq -r .version package.json)
