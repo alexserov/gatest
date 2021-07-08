@@ -18,3 +18,5 @@ jobs:
     - name: Install packages
       run: |
         echo $(jq -r .version package.json)
+        git status
+        git branch -v
