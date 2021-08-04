@@ -21,6 +21,7 @@ jobs:
         echo $GITHUB_HEAD_REF
         echo $GITHUB_BASE_REF
         echo $GITHUB_REF
+        git fetch --all
         git --no-pager diff --name-only $GITHUB_BASE_REF
 #        git status
 #        echo git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master)
