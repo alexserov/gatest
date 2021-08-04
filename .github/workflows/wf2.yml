@@ -19,5 +19,5 @@ jobs:
     - name: Install packages
       run: |
         git status
-        echo git diff --name-status $GITHUB_HEAD_REF $GITHUB_BASE_REF
-        git diff --name-status $GITHUB_HEAD_REF $GITHUB_BASE_REF
+        echo git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }}
+        git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }}
