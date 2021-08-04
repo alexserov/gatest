@@ -19,5 +19,5 @@ jobs:
     - name: Install packages
       run: |
         git status
-        echo git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }}
-        git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }}
+        echo git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master)
+        git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master)
