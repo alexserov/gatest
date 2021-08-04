@@ -1,0 +1,20 @@
+name: test commit list
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    timeout-minutes: 30
+    
+    steps:
+    - name: Get sources
+      uses: actions/checkout@v2   
+    
+    - name: Install packages
+      run: |
+        echo ${{ github.head_ref }}
