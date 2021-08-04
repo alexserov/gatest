@@ -18,6 +18,9 @@ jobs:
     
     - name: Install packages
       run: |
-        git status
-        echo git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master)
-        git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master)
+      echo $GITHUB_HEAD_REF
+      echo $GITHUB_BASE_REF
+      echo $GITHUB_REF
+#        git status
+#        echo git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master)
+#        git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master)
