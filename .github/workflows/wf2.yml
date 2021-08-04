@@ -18,4 +18,4 @@ jobs:
     
     - name: Install packages
       run: |
-        git diff --name-status $GITHUB_HEAD_REF..$GITHUB_BASE_REF
+        git diff --name-status $GITHUB_HEAD_REF $GITHUB_BASE_REF
