@@ -18,7 +18,7 @@ jobs:
 
     - name: Check comments
       id: wait-for-test
-      if: ${{ github.event_name == 'pull_request' && contains(github.event.labels.*.name, 'force_test') }}
+      if: ${{ github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'force_test') }}
       run: echo Hello!
 
     # - uses: actions/upload-artifact@v2
