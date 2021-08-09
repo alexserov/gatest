@@ -1,4 +1,4 @@
-name: test concurrency
+name: Comments test
 
 concurrency:
   group: wf-${{github.event.pull_request.number}}-${{github.workflow}}
