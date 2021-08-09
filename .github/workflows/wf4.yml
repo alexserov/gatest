@@ -19,4 +19,9 @@ jobs:
     - name: Check comments
       id: wait-for-test
 #      if: ${{ github.event_name == 'pull_request' && !contains(github.event.comment.body, '/force') }}
-      run: echo ${{toJson(github.event)}}
+      run: echo ${{toJson(github.event)}} > log.txt
+
+    - uses: actions/upload-artifact@v2
+      with:
+      name: my-artifact
+      path: log.txt
