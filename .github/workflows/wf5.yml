@@ -13,12 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     name: Build-${{matrix.envs}}
     timeout-minutes: 30
-    matrix:
-      envs: [
-        { CONSTEL: "misc", TZ: 'PST8PDT' },
-        { CONSTEL: "misc", TZ: 'Japan' },
-        { MOBILE_UA: "android6", JQUERY: true, CONSTEL: "ui.editors", NO_HEADLESS: true },
-      ]
+    strategy:
+      matrix:
+        envs: [
+          { CONSTEL: "misc", TZ: 'PST8PDT' },
+          { CONSTEL: "misc", TZ: 'Japan' },
+          { MOBILE_UA: "android6", JQUERY: true, CONSTEL: "ui.editors", NO_HEADLESS: true },
+        ]
     
     steps:
 
