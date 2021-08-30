@@ -19,10 +19,21 @@ jobs:
     - name: Install packages
       run: exit 1
 
+  build2:
+    runs-on: ubuntu-latest
+    name: Build
+    timeout-minutes: 30
+    
+    steps:
+
+    - name: Get sources
+      uses: actions/checkout@v2
+
   notify:
     runs-on: ubuntu-latest
     name: Send notifications
-    if: always()
+    needs: [build, build2]
+    if: always() && contains(needs.*.result, 'failure')
 
     steps:
       - name: Checkout
