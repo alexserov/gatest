@@ -1,0 +1,34 @@
+name: Matrix formatting
+
+concurrency:
+  group: wf-${{github.event.pull_request.number}}-${{github.workflow}}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    types: [labeled, unlabeled, opened, synchronize, reopened]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build-${{join(matrix.envs.*,'-')}}
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        envs: [
+          { CONSTEL: "misc", TZ: 'PST8PDT' },
+          { CONSTEL: "misc", TZ: 'Japan' },
+          { MOBILE_UA: "android6", JQUERY: true, CONSTEL: "ui.editors", NO_HEADLESS: true },
+        ]
+    
+    steps:
+
+    - name: Check comments
+      id: wait-for-test
+      if: ${{ github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'force visual tests') }}
+      run: echo Hello!
+
+    # - uses: actions/upload-artifact@v2
+    #   with:
+    #     name: my-artifact
+    #     path: log.txt
