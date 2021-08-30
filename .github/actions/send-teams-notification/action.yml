@@ -35,7 +35,7 @@ runs:
                     },
                     {
                         "name": "Commit message",
-                        "value": "$(echo $RUN_INFO | jq -r .head_commit.message)"
+                        "value": '"$(echo $RUN_INFO | jq -r .head_commit.message)"'
                     }
                 ]
             }
@@ -47,7 +47,7 @@ runs:
                 "targets": [
                     {
                         "os": "default",
-                        "uri": $(echo $RUN_INFO | jq .html_url)
+                        "uri": '"$(echo $RUN_INFO | jq -r .html_url)"'
                     }
                 ]
             }
