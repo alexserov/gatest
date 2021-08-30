@@ -21,7 +21,8 @@ runs:
   using: "composite"
   steps:
     - name: execute
-      run: curl -0 -v -X POST ${{inputs.hook_url}} -H "Content-Type: application/json; charset=utf-8" --data-binary @- << EOF
+      run: |
+      curl -0 -v -X POST ${{inputs.hook_url}} -H "Content-Type: application/json; charset=utf-8" --data-binary @- << EOF
 {
     "@context": "https://schema.org/extensions",
     "@type": "MessageCard",
