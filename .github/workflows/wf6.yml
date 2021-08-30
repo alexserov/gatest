@@ -16,8 +16,8 @@ jobs:
     - name: Get sources
       uses: actions/checkout@v2   
     
-    # - name: Install packages
-    #   run: exit 1
+    - name: Install packages
+      run: exit 1
 
   build2:
     runs-on: ubuntu-latest
