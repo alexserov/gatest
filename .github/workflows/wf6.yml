@@ -36,11 +36,8 @@ jobs:
     if: always() && contains(needs.*.result, 'failure')
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Execute
-        uses: ./.github/actions/send-teams-notification
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/send-teams-notification
         with:
           hook_url: ${{secrets.FAILURE_NOTIFICATION_URL}}
           run_id: ${{github.run_id}}
