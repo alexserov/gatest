@@ -1,4 +1,5 @@
 name: "Notify Teams"
+if: github.event.name == "push"
 
 inputs:
   run_id:
@@ -15,7 +16,6 @@ runs:
   using: "composite"
   steps:
     - name: execute
-      if: github.event.name == "push"
       shell: bash
       run: |
         RUN_INFO=$(curl --silent https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ inputs.run_id }})
