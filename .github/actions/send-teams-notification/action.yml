@@ -25,12 +25,13 @@ runs:
       run: |
         if [ "${{github.event_name}}" != "push" ]; then exit 0; fi
         if [ "${{inputs.specific_repo}}" != "" ] && [ "${{inputs.specific_repo}}" != "${{github.repository}}" ]; then exit 0; fi
-        if [ "${{inputs.specific_branch}}" != "" ] && [ "${{inputs.specific_branch}}" != "${{github.ref}}" ]; then exit 0; fi
-        
+        if [ "${{inputs.specific_branch}}" != "" ] && [ "refs/heads/${{inputs.specific_branch}}" != "${{github.ref}}" ]; then exit 0; fi
+
         RUN_INFO=$(curl --silent https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ inputs.run_id }})
         COMMIT_MSG=$(echo $RUN_INFO | jq -r .head_commit.message)
         COMMIT_AUTHOR=$(echo $RUN_INFO | jq -r .head_commit.author.name)
         WEBPAGE_URL=$(echo $RUN_INFO | jq -r .html_url)
+
         curl --silent -X POST \
         --url ${{ inputs.hook_url }} \
         --header 'authorization: Bearer ${{ inputs.bearer_token }}' \
