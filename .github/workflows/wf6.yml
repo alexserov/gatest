@@ -43,3 +43,4 @@ jobs:
           run_id: ${{github.run_id}}
           bearer_token: ${{secrets.GITHUB_TOKEN}}
           specific_repo: alexserov/gatest
+          specific_branch: main
