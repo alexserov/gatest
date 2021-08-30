@@ -1,12 +1,6 @@
 name: "Notify Teams"
 
 inputs:
-  workflow_name:
-    description: "Workflow name"
-    required: true
-  commit_sha:
-    description: "Head commit SHA"
-    required: true
   run_id:
     description: "Current run id"
     required: true
@@ -20,6 +14,7 @@ runs:
     - name: execute
       shell: bash
       run: |
+        RUN_INFO=$(curl https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ inputs.run_id }}) \
         curl -X POST \
         --url ${{ inputs.hook_url }} \
         --header "Content-Type: application/json; charset=utf-8" \
@@ -36,11 +31,11 @@ runs:
                     },
                     {
                         "name": "Workflow",
-                        "value": "${{ inputs.workflow_name }}"
+                        "value": "${{ github.workflow }}"
                     },
                     {
                         "name": "Commit message",
-                        "value": "${{ inputs.commit_msg }}"
+                        "value": "$(echo $RUN_INFO | jq -r .head_commit.message)"
                     }
                 ]
             }
@@ -52,7 +47,7 @@ runs:
                 "targets": [
                     {
                         "os": "default",
-                        "uri": "https://github.com/${{ inputs.repository }}/runs/${{ inputs.run_id }}"
+                        "uri": "$(echo $RUN_INFO | jq -r .html_url)"
                     }
                 ]
             }

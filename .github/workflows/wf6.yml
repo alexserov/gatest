@@ -32,6 +32,4 @@ jobs:
         uses: ./.github/actions/send-teams-notification
         with:
           hook_url: ${{secrets.FAILURE_NOTIFICATION_URL}}
-          workflow_name: ${{github.workflow}}
-          commit_sha: ${{github.sha}}
           run_id: ${{github.run_id}}
