@@ -26,6 +26,7 @@ jobs:
 
     steps:
       - name: Execute
+        uses: actions/checkout@v2
         uses: ./.github/actions/send-teams-notifiaction
         with:
           hook_url: ${{secrets.FAILURE_NOTIFICATION_URL}}
