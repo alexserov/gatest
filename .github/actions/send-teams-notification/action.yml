@@ -19,6 +19,7 @@ runs:
       run: |
         RUN_INFO=$(curl --silent https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ inputs.run_id }})
         COMMIT_MSG=$(echo $RUN_INFO | jq -r .head_commit.message)
+        COMMIT_AUTHOR=$(echo $RUN_INFO | jq -r .head_commit.author.name)
         WEBPAGE_URL=$(echo $RUN_INFO | jq -r .html_url)
         curl --silent -X POST \
         --url ${{ inputs.hook_url }} \
@@ -40,7 +41,11 @@ runs:
                         "value": "${{ github.workflow }}"
                     },
                     {
-                        "name": "Commit message",
+                        "name": "Committer",
+                        "value": "'"$COMMIT_AUTHOR"'"
+                    },
+                    {
+                        "name": "Commit msg",
                         "value": "'"$COMMIT_MSG"'"
                     }
                 ]
