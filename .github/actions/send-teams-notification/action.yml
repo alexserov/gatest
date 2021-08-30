@@ -1,5 +1,5 @@
 name: "Notify Teams"
-if: (github.event.name == "push") && (!inputs.specific_repo || inputs.specific_repo == github.repository) && (!inputs.specific_branch || inputs.specific_branch == github.ref)
+if: (github.event_name == "push") && (!inputs.specific_repo || inputs.specific_repo == github.repository) && (!inputs.specific_branch || inputs.specific_branch == github.ref)
 
 inputs:
   run_id:
