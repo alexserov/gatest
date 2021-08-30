@@ -1,5 +1,4 @@
 name: "Notify Teams"
-if: (github.event_name == "push") && (!inputs.specific_repo || inputs.specific_repo == github.repository) && (!inputs.specific_branch || inputs.specific_branch == github.ref)
 
 inputs:
   run_id:
@@ -24,6 +23,10 @@ runs:
     - name: execute
       shell: bash
       run: |
+        if [ "${{github.event_name}}" != "push" ]; then exit 0; fi
+        if [ "${{inputs.specific_repo}}" = "" ] || [ "${{inputs.specific_repo}}" == "${{github.repository}}" ]; then exit 0; fi
+        if [ "${{inputs.specific_branch}}" = "" ] || [ "${{inputs.specific_branch}}" == "${{github.ref}}" ]; then exit 0; fi
+        
         RUN_INFO=$(curl --silent https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ inputs.run_id }})
         COMMIT_MSG=$(echo $RUN_INFO | jq -r .head_commit.message)
         COMMIT_AUTHOR=$(echo $RUN_INFO | jq -r .head_commit.author.name)
