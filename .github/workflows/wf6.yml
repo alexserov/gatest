@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Execute
-        uses: ./.github/actions/send-teams-notifiaction
+        uses: ./.github/actions/send-teams-notification
         with:
           hook_url: ${{secrets.FAILURE_NOTIFICATION_URL}}
           repository: ${{github.repository}}
