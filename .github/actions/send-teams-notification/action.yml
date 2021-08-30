@@ -20,10 +20,10 @@ runs:
         RUN_INFO=$(curl https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ inputs.run_id }}) \
         COMMIT_MSG=$(echo $RUN_INFO | jq -r .head_commit.message) \
         echo "TEST_MESSAGE" \
-        echo $RUN_INFO \
-        echo $COMMIT_MSG \
+        echo "$RUN_INFO" \
+        echo "$COMMIT_MSG" \
         WEBPAGE_URL=$(echo $RUN_INFO | jq -r .html_url) \
-        echo $WEBPAGE_URL \
+        echo "$WEBPAGE_URL" \
         curl -X POST \
         --url ${{ inputs.hook_url }} \
         --header 'authorization: Bearer ${{ inputs.bearer_token }}' \
