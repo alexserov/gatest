@@ -16,7 +16,9 @@ runs:
       run: |
         RUN_INFO=$(curl https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ inputs.run_id }}) \
         COMMIT_MSG=$(echo $RUN_INFO | jq -r .head_commit.message) \
+        echo $COMMIT_MSG \
         WEBPAGE_URL=$(echo $RUN_INFO | jq -r .html_url) \
+        echo $WEBPAGE_URL \
         curl -X POST \
         --url ${{ inputs.hook_url }} \
         --header "Content-Type: application/json; charset=utf-8" \
