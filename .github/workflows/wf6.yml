@@ -6,18 +6,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: Build
-    timeout-minutes: 30
+  # build:
+  #   runs-on: ubuntu-latest
+  #   name: Build
+  #   timeout-minutes: 30
     
-    steps:
+  #   steps:
 
-    - name: Get sources
-      uses: actions/checkout@v2   
+  #   - name: Get sources
+  #     uses: actions/checkout@v2   
     
-    - name: Install packages
-      run: exit 1
+  #   - name: Install packages
+  #     run: exit 1
 
   notify:
     runs-on: ubuntu-latest
@@ -32,7 +32,6 @@ jobs:
         uses: ./.github/actions/send-teams-notification
         with:
           hook_url: ${{secrets.FAILURE_NOTIFICATION_URL}}
-          repository: ${{github.repository}}
-          workflow_name: ${{github.action}}
+          workflow_name: ${{github.workflow}}
           commit_sha: ${{github.sha}}
           run_id: ${{github.run_id}}

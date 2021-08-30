@@ -1,9 +1,6 @@
 name: "Notify Teams"
 
 inputs:
-  repository:
-    description: "Repository full name in `organization/repo-name` format"
-    required: true
   workflow_name:
     description: "Workflow name"
     required: true
@@ -35,7 +32,7 @@ runs:
                 "facts": [
                     {
                         "name": "Repository",
-                        "value": "${{ inputs.repository }}"
+                        "value": "${{ github.repository }}"
                     },
                     {
                         "name": "Workflow",
