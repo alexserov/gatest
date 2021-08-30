@@ -22,7 +22,7 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     name: Send notifications
-    if: failure()
+    if: always()
 
     steps:
       - name: Execute
