@@ -25,8 +25,10 @@ jobs:
     if: always()
 
     steps:
-      - name: Execute
+      - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Execute
         uses: ./.github/actions/send-teams-notifiaction
         with:
           hook_url: ${{secrets.FAILURE_NOTIFICATION_URL}}
