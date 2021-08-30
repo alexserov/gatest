@@ -47,7 +47,7 @@ runs:
                 "targets": [
                     {
                         "os": "default",
-                        "uri": "$(echo $RUN_INFO | jq -r .html_url)"
+                        "uri": $(echo $RUN_INFO | jq -r .html_url)
                     }
                 ]
             }
