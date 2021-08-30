@@ -1,0 +1,38 @@
+name: test commit list
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    timeout-minutes: 30
+    
+    steps:
+
+    - name: Get sources
+      uses: actions/checkout@v2   
+    
+    - name: Install packages
+      run: |
+        curl \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/${{github.repository_owner}}/${{github.repository}}/pulls/${{github.events.pull_request.number}}/files
+
+  notify:
+    runs-on: ubuntu-latest
+    name: Send notifications
+    if: failure() && github.event_name == "push"
+
+    steps:
+      - name: Execute
+        uses: ./.github/actions/send-teams-notifiaction
+        with:
+          hook_url: ${{secrets.FAILURE_NOTIFICATION_URL}}
+          repository: ${{github.repository}}
+          workflow_name: ${{github.action}}
+          commit_sha: ${{github.sha}}
+          run_id: ${{github.run_id}}
