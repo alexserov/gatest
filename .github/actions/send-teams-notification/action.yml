@@ -1,5 +1,5 @@
 name: "Notify Teams"
-if: github.event.name == "push"
+if: (github.event.name == "push") && (!inputs.specific_repo || inputs.specific_repo == github.repository) && (!inputs.specific_branch || inputs.specific_branch == github.ref)
 
 inputs:
   run_id:
@@ -10,6 +10,12 @@ inputs:
     required: true
   bearer_token:
     description: "Github token"
+    required: false
+  specific_repo:
+    description: "Filter by repository name (format: `organization/repository`)"
+    required: false
+  specific_branch:
+    description: "Filter by branch name"
     required: false
 
 runs:
