@@ -42,3 +42,4 @@ jobs:
           hook_url: ${{secrets.FAILURE_NOTIFICATION_URL}}
           run_id: ${{github.run_id}}
           bearer_token: ${{secrets.GITHUB_TOKEN}}
+          specific_repo: alexserov/gatest
