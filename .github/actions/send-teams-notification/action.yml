@@ -23,7 +23,7 @@ runs:
     - name: execute
       shell: bash
       run: |
-      curl -0 -v -X POST ${{inputs.hook_url}} -H "Content-Type: application/json; charset=utf-8" --data-binary @- << EOF
+      curl -0 -v -X POST ${{ inputs.hook_url }} -H "Content-Type: application/json; charset=utf-8" --data-binary @- << EOF
 {
     "@context": "https://schema.org/extensions",
     "@type": "MessageCard",
@@ -33,15 +33,15 @@ runs:
             "facts": [
                 {
                     "name": "Repository",
-                    "value": "${{inputs.repository}}"
+                    "value": "${{ inputs.repository }}"
                 },
                 {
                     "name": "Workflow",
-                    "value": "${{inputs.workflow_name}}"
+                    "value": "${{ inputs.workflow_name }}"
                 },
                 {
                     "name": "Commit message",
-                    "value": "${{inputs.commit_msg}}"
+                    "value": "${{ inputs.commit_msg }}"
                 }
             ]
         }
@@ -53,7 +53,7 @@ runs:
             "targets": [
                 {
                     "os": "default",
-                    "uri": "https://github.com/${{inputs.repository}}/runs/${{inputs.run_id}}"
+                    "uri": "https://github.com/${{ inputs.repository }}/runs/${{ inputs.run_id }}"
                 }
             ]
         }
