@@ -22,41 +22,42 @@ runs:
   steps:
     - name: execute
       shell: bash
-      run: >
-      curl -0 -v -X POST ${{ inputs.hook_url }} -H "Content-Type: application/json; charset=utf-8" --data-binary @- << EOF
-{
-    "@context": "https://schema.org/extensions",
-    "@type": "MessageCard",
-    "text": "Run failed",
-    "sections": [
-        {
-            "facts": [
-                {
-                    "name": "Repository",
-                    "value": "${{ inputs.repository }}"
-                },
-                {
-                    "name": "Workflow",
-                    "value": "${{ inputs.workflow_name }}"
-                },
-                {
-                    "name": "Commit message",
-                    "value": "${{ inputs.commit_msg }}"
-                }
-            ]
-        }
-    ],
-    "potentialAction": [
-        {
-            "@type": "OpenUri",
-            "name": "View in GitHub",
-            "targets": [
-                {
-                    "os": "default",
-                    "uri": "https://github.com/${{ inputs.repository }}/runs/${{ inputs.run_id }}"
-                }
-            ]
-        }
-    ]
-}
-EOF
+      run: |
+        curl -X POST \
+        --url ${{ inputs.hook_url }} \
+        --header "Content-Type: application/json; charset=utf-8" \
+        --data '{
+        "@context": "https://schema.org/extensions",
+        "@type": "MessageCard",
+        "text": "Run failed",
+        "sections": [
+            {
+                "facts": [
+                    {
+                        "name": "Repository",
+                        "value": "${{ inputs.repository }}"
+                    },
+                    {
+                        "name": "Workflow",
+                        "value": "${{ inputs.workflow_name }}"
+                    },
+                    {
+                        "name": "Commit message",
+                        "value": "${{ inputs.commit_msg }}"
+                    }
+                ]
+            }
+        ],
+        "potentialAction": [
+            {
+                "@type": "OpenUri",
+                "name": "View in GitHub",
+                "targets": [
+                    {
+                        "os": "default",
+                        "uri": "https://github.com/${{ inputs.repository }}/runs/${{ inputs.run_id }}"
+                    }
+                ]
+            }
+        ]
+    }'
