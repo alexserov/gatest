@@ -22,7 +22,7 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     name: Send notifications
-    if: failure() && github.event_name == 'push'
+    if: failure()
 
     steps:
       - name: Execute
