@@ -37,7 +37,7 @@ runs:
                     },
                     {
                         "name": "Commit message",
-                        "value": "$COMMIT_MSG"
+                        "value": "'"$COMMIT_MSG"'"
                     }
                 ]
             }
@@ -49,7 +49,7 @@ runs:
                 "targets": [
                     {
                         "os": "default",
-                        "uri": "$WEBPAGE_URL"
+                        "uri": "'"$WEBPAGE_URL"'"
                     }
                 ]
             }
