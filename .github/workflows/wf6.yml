@@ -1,7 +1,10 @@
 name: test commit list
 
 on:
+on:
+  pull_request:
   push:
+    branches: [21_2]
   pull_request:
   workflow_dispatch:
 
