@@ -20,3 +20,5 @@ jobs:
         echo $(jq -r .version package.json)
         git show head^:package.json > old-package.json
         echo $(jq -r .version old-package.json)
+
+        
