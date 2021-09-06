@@ -1,4 +1,4 @@
-name: Comments test
+name: Self-hosted
 
 concurrency:
   group: wf-${{github.event.pull_request.number}}-${{github.workflow}}
@@ -16,12 +16,8 @@ jobs:
     
     steps:
 
-    - name: Check comments
-      id: wait-for-test
-      if: ${{ github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'force visual tests') }}
-      run: echo Hello!
+    - name: checkout
+      uses: actions/checkout@v2
 
-    # - uses: actions/upload-artifact@v2
-    #   with:
-    #     name: my-artifact
-    #     path: log.txt
+    - name: install-packages
+      run: npm i
