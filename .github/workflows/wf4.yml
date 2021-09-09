@@ -33,3 +33,10 @@ jobs:
     - name: Zip artifacts 
       run: |
         7z a -tzip -mx3 -mmt2 artifacts.zip node_modules
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: devextreme-artifacts
+        path: artifacts.zip
+        retention-days: 1
