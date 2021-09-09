@@ -22,3 +22,14 @@ jobs:
 
     - name: install-packages
       run: npm i
+
+    - name: Restore npm cache
+      uses: actions/cache@v2
+      with:
+        path: ./node_modules
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package.json') }}
+        restore-keys: ${{ runner.os }}-node-modules
+
+    - name: Zip artifacts 
+      run: |
+        7z a -tzip -mx3 -mmt2 artifacts.zip node_modules
