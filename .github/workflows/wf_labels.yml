@@ -12,4 +12,4 @@ jobs:
         - name: Print Env
           run: |
             echo test
-            echo ${{ github.event.pull_request.labels }}
+            echo ${{ toJSON(github.event.pull_request.labels) }}
