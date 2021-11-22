@@ -11,4 +11,5 @@ jobs:
     steps:
         - name: Print Env
           run: |
+            echo test
             echo ${{ github.event.pull_request.labels }}
