@@ -11,11 +11,11 @@ jobs:
     steps:
 
       - name: NoLabels
-        if: "${{ toJSON(github.event.pull_request.labels) }}" == "[]"
+        # if: "${{ toJSON(github.event.pull_request.labels) }}" == "[]"
         run: |
           echo no labels
 
-      - name: Labels
-        if: "${{ toJSON(github.event.pull_request.labels) }}" != "[]"
-        run: |
-          echo no labels
+      # - name: Labels
+      #   if: "${{ toJSON(github.event.pull_request.labels) }}" != "[]"
+      #   run: |
+      #     echo no labels
