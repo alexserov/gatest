@@ -9,7 +9,12 @@ jobs:
     name: Generate Documentation
 
     steps:
-        - name: Print Env
+        - name: No labels
+          if: "${{ toJSON(github.event.pull_request.labels) }}" == "[]"
           run: |
-            echo test
-            echo ${{ toJSON(github.event.pull_request.labels) }}
+            echo no labels
+
+        - name: Labels
+          if: "${{ toJSON(github.event.pull_request.labels) }}" != "[]"
+          run: |
+            echo no labels
