@@ -1,0 +1,9 @@
+name: "Force Renovate Workflow"
+
+runs:
+  using: "composite"
+  steps:
+    - name: execute
+      shell: bash
+      run: ${{ github.action_path }}/script.sh
+
