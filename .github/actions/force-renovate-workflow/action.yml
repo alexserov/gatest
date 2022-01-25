@@ -29,7 +29,7 @@ runs:
         }
 
         all_requests=$(paginate GET "https://api.github.com/repos/${{github.repository}}/pulls?state=open")
-        renovate_request_refs=$(echo $all_requests | jq 'map(select(.user.login | contains("renovate"))) | .[] | .head.ref')
+        renovate_request_refs=$(echo $all_requests | jq 'map(select(.user.login | contains("alexserov"))) | .[] | .head.ref')
 
         for request_ref in $(echo $renovate_request_refs | jq -r .); do
 
