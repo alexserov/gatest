@@ -1,9 +1,7 @@
 name: test
 
 on:
-  push:
   pull_request:
-  workflow_dispatch:
 
 jobs:
   build:
@@ -12,13 +10,5 @@ jobs:
     timeout-minutes: 30
     
     steps:
-    - name: Get sources
-      uses: actions/checkout@v2   
-    
     - name: Install packages
-      run: |
-        echo $(jq -r .version package.json)
-        git show head^:package.json > old-package.json
-        echo $(jq -r .version old-package.json)
-
-        
+      run: exit 1
