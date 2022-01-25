@@ -1,0 +1,12 @@
+name: Force renovate workflows
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 * * * *'
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/force-renovate-workflow
