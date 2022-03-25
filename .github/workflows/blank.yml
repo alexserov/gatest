@@ -1,5 +1,9 @@
 name: test
 
+concurrency:
+  group: wf-${{github.event.pull_request.number}}-${{github.workflow}}
+  cancel-in-progress: true
+
 on:
   pull_request:
   push:
@@ -12,4 +16,4 @@ jobs:
     
     steps:
     - name: Install packages
-      run: exit 1
+      run: exit 0

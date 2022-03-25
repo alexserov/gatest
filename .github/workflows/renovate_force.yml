@@ -2,8 +2,6 @@ name: Force renovate workflows
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '30 * * * *'
 
 jobs:
   execute:
